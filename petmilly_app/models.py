@@ -18,13 +18,21 @@ class Blog(Base):
     __tablename__ = 'blog'
 
     id=Column(Integer, primary_key=True, index=True)
-    body = Column(String)
     user_id = Column(Integer, ForeignKey('user.id'))
-    pic = Column(String)##nosql url for blog picture
-    comment = Column(String)###nosql url for blog picture
+    # tags = Column(String)##nosql url for tags
+    # pic = Column(String)##nosql url for blog picture
+    # comment = Column(String)###nosql url for blog picture
+    tag = relationship("Tag",back_populates="blog")
     pic = relationship("Picture",back_populates="blog")
     comment = relationship("Comment",back_populates="blog")
     user  = relationship("User",back_populates="blog")
+
+class Tag(Base):
+    __tablename__ = 'tag'
+
+    id=Column(Integer, primary_key=True, index=True)
+    body = Column(String)
+
 
 class Comment(Base):
     __tablename__ = "comment"

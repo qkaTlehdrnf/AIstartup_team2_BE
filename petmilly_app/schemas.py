@@ -16,8 +16,12 @@ class Picture(BaseModel):
     blog_id : int
     url : str
 
+class Tag(BaseModel):
+    body : str
+
 class Blog(BaseModel):
     user_id:int ####owner of blog
+    tags : List[Tag] = []
     pic: List[Picture] = []
     comment : List[Comment] = []
     body:str
@@ -36,6 +40,7 @@ class ShowBlog(BaseModel):
     user: ShowUser
     pic: List[Picture] = []
     comment : List[Comment] = []
+    tag : List[Tag]
     class Config():
         orm_mode = True
 
@@ -49,6 +54,12 @@ class ShowComment(BaseModel):
 class ShowPicture(BaseModel):
     blog_id = int
     url : str
+    class Config():
+        orm_mode = True
+
+class ShowTag(BaseModel):
+    blog_id = int
+    body : str
     class Config():
         orm_mode = True
         
