@@ -18,7 +18,7 @@ router = APIRouter(
 
 
 ###111
-@router.get('/{blog_id}', response_model=List[schemas.ShowTag])
+@router.get('/blog/{blog_id}', response_model=List[schemas.ShowTag])
 async def read_all_tags_by_blog_id(
     blog_id : int, 
     db: Session = Depends(get_db)
@@ -28,7 +28,7 @@ async def read_all_tags_by_blog_id(
 
 
 ###222
-@router.get('/{user_name}', status_code=200, response_model=schemas.ShowTag)
+@router.get('/detail/{user_name}', status_code=200, response_model=schemas.ShowTag)
 async def read_tag_by_tag_id(
     id: int, 
     db: Session = Depends(get_db)
@@ -38,7 +38,7 @@ async def read_tag_by_tag_id(
 
 
 ###333
-@router.get('/mypost/{user_name}', response_model=List[schemas.ShowTag])
+@router.get('/blog_by_tag/{tag_body}', response_model=List[schemas.ShowTag])
 async def read_all_blogs_by_tag_id(
     tag_id : int, 
     db: Session = Depends(get_db)
@@ -51,7 +51,7 @@ async def read_all_blogs_by_tag_id(
 ###444
 @router.post('', status_code=status.HTTP_201_CREATED)
 async def create(
-    request: schemas.tag, 
+    request: schemas.Tag, 
     db: Session = Depends(get_db)
     ):##current_user:schemas.User = Depends(oauth2.get_current_user)
     return tag.create(request, db)

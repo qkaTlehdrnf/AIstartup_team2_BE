@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from . import models
 from .database import engine
-from .routers import blog, user, authentication, comment, picture
+from petmilly_app.routers import authentication,user,blog,comment,picture,tag
 
 
 app = FastAPI()
@@ -13,3 +13,4 @@ app.include_router(user.router)
 app.include_router(blog.router)
 app.include_router(comment.router)
 app.include_router(picture.router)
+app.include_router(tag.router)
