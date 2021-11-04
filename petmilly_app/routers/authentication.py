@@ -1,6 +1,6 @@
 from typing import List
 from sqlalchemy.orm import Session
-from .. import models, schemas, database, JWTtoken
+from .. import models, database, JWTtoken
 from fastapi import APIRouter, Depends, status, HTTPException
 from ..hashing import Hash
 from fastapi.security import OAuth2PasswordRequestForm as OAuth2Form
